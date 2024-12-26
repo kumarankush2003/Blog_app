@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const { addComment, like, deleteComment, editComment, getComment, nestedComment} = require("../controllers/comment_controller");
+const { protect } = require("../middlewares/authMiddleware");
+router.post("/add/:id", protect, addComment);
+router.post("/nested/:id", protect, nestedComment);
+router.post("/like/:id", protect, like);
+router.delete("/delete/:commentId", protect, deleteComment);
+router.put("/edit/:commentId", protect, editComment);
+router.get("/:commentId", protect, getComment);
+module.exports = router;
